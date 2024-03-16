@@ -22,7 +22,7 @@ const style = {
   borderRadius: "12px",
 };
 
-export default function Login() {
+export default function SignUp() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -30,6 +30,8 @@ export default function Login() {
   const [emailErrorText, setEmailErrorText] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorText, setPasswordErrorText] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [confirmPasswordErrorText, setConfirmPasswordErrorText] = useState("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -37,12 +39,15 @@ export default function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
     const email = data.get("email");
     const password = data.get("password");
+    const confirmPassword = data.get("confirmPassword");
 
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+      confirmPassword: data.get("confirmPassword"),
     });
 
     // to-do: Get this to go way after typing?!?! Finish login for error handling
@@ -58,13 +63,24 @@ export default function Login() {
     } else {
       setPasswordError(false);
     }
-    if (!email || !password) {
+    if (!confirmPassword) {
+      setConfirmPasswordError(true);
+      setConfirmPasswordErrorText("Confirm password is required");
+    } else if (confirmPassword !== password) {
+      setConfirmPasswordError(true);
+      setConfirmPasswordErrorText("Passwords must match");
+    } else {
+      setConfirmPasswordError(false);
+    }
+
+    // useState errors are not false yet, so this is not working.
+    if (emailError || passwordError || confirmPasswordError) {
       return;
     }
 
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -74,6 +90,7 @@ export default function Login() {
     } else {
       alert("Check your email for the login link!");
     }
+
     setLoading(false);
   };
 
@@ -83,7 +100,7 @@ export default function Login() {
         sx={{ my: 2, color: "white", display: "block" }}
         onClick={handleOpen}
       >
-        Login
+        Sign Up
       </Button>
       <Modal
         open={open}
@@ -93,7 +110,7 @@ export default function Login() {
         <Box component="form" onSubmit={handleLogin} noValidate sx={style}>
           <Stack spacing={2} direction="column">
             <Typography id="modal-login-title" variant="h6" component="h2">
-              Login
+              Create Account
             </Typography>
             <TextField
               required
@@ -101,7 +118,7 @@ export default function Login() {
               autoFocus
               label="Email Address"
               name="email"
-              autoComplete="email"
+              type="email"
               helperText={emailErrorText}
               error={emailError}
             />
@@ -111,17 +128,25 @@ export default function Login() {
               label="Password"
               name="password"
               type="password"
-              autoComplete="current-password"
               helperText={passwordErrorText}
               error={passwordError}
             />
+            <TextField
+              required
+              fullWidth
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+              helperText={confirmPasswordErrorText}
+              error={confirmPasswordError}
+            />
             <LoadingButton
-              variant="contained"
               loading={loading}
+              variant="contained"
               type="submit"
               fullWidth
             >
-              Login
+              Lets Go
             </LoadingButton>
           </Stack>
         </Box>
