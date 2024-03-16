@@ -9,23 +9,13 @@ export default function ColorModeToggle() {
 
   return (
     <>
-      {mode === "light" ? (
-        <IconButton
-          onClick={() => togglColorMode()}
-          aria-label="Liight Mode"
-          component="label"
-        >
-          <LightModeIcon />
-        </IconButton>
-      ) : (
-        <IconButton
-          onClick={() => togglColorMode()}
-          aria-label="Dark Mode"
-          component="label"
-        >
-          <DarkModeIcon />
-        </IconButton>
-      )}
+      <IconButton
+        onClick={() => togglColorMode()}
+        aria-label={mode === "light" ? "Light Mode" : "Dark Mode"}
+        component="label"
+      >
+        {mode === "light" ? <LightModeIcon /> : <DarkModeIcon />}
+      </IconButton>
     </>
   );
 }

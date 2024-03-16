@@ -10,10 +10,10 @@ import { ColorModeContextProvider } from "./context/ColorModeContext";
 import ErrorPage from "./routes/ErrorPage";
 
 import Root from "./routes/Root";
-import Contact from "./routes/Contact";
-import About from "./routes/About";
 import Account from "./routes/Account";
 import Seeds from "./routes/Seeds";
+import Plants from "./routes/Plants";
+import Users from "./routes/Users";
 
 import Header from "./components/header/Header";
 
@@ -37,20 +37,20 @@ const router = createBrowserRouter([
         element: <Root />,
       },
       {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-      {
         path: "account",
         element: <Account />,
       },
       {
         path: "seeds",
         element: <Seeds />,
+      },
+      {
+        path: "plants",
+        element: <Plants />,
+      },
+      {
+        path: "users",
+        element: <Users />,
       },
     ],
   },
