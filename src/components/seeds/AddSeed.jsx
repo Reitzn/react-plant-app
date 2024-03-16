@@ -22,7 +22,7 @@ const style = {
   borderRadius: "12px",
 };
 
-export default function Login() {
+export default function AddSeed() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -63,7 +63,7 @@ export default function Login() {
     }
 
     setLoading(true);
-
+    
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -80,10 +80,10 @@ export default function Login() {
   return (
     <div>
       <Button
-        sx={{ my: 2, color: "white", display: "block" }}
+        variant="contained"
         onClick={handleOpen}
       >
-        Login
+        Add Seed
       </Button>
       <Modal
         open={open}
@@ -97,13 +97,11 @@ export default function Login() {
             </Typography>
             <TextField
               required
-              fullWidth
-              autoFocus
               label="Email Address"
               name="email"
               autoComplete="email"
-              helperText={emailErrorText}
-              error={emailError}
+              fullWidth
+              autoFocus
             />
             <TextField
               required
@@ -112,8 +110,6 @@ export default function Login() {
               name="password"
               type="password"
               autoComplete="current-password"
-              helperText={passwordErrorText}
-              error={passwordError}
             />
             <LoadingButton
               variant="contained"

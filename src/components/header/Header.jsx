@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,13 +10,14 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
-import ForestIcon from '@mui/icons-material/Forest';
+import ForestIcon from "@mui/icons-material/Forest";
 
 import { useAuth } from "../../context/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 
 import Login from "./Login";
+import SignUp from "./SignUp";
 import UserDropdown from "./UserDropdown";
 import ColorModeToggle from "./ColorModeToggle";
 
@@ -140,7 +141,14 @@ function ResponsiveAppBar() {
           </Box>
           <Stack spacing={2} direction="row">
             <ColorModeToggle />
-            {session ? <UserDropdown /> : <Login />}
+            {session ? (
+              <UserDropdown />
+            ) : (
+              <>
+                <SignUp /> 
+                <Login />
+              </>
+            )}
           </Stack>
         </Toolbar>
       </Container>
