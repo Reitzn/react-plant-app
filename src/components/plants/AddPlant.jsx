@@ -28,7 +28,7 @@ const style = {
   borderRadius: "12px",
 };
 
-export default function AddSeed() {
+export default function AddPlant() {
   const userSession = useSelector((state) => state.userSession);
   const seeds = useSelector((state) => state.seeds);
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function AddSeed() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleNewSeed = async (event) => {
+  const handleNewPlant = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -49,24 +49,24 @@ export default function AddSeed() {
       date_sowed: data.get("date_sowed"),
     };
 
-    dispatch(addSeedAction(newSeed)).then(() => {
-      handleClose();
-    });
+    // dispatch(addSeedAction(newSeed)).then(() => {
+    //   handleClose();
+    // });
   };
 
   return (
     <div>
       <Button variant="contained" onClick={handleOpen}>
-        Add Seed
+        Add Plant
       </Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-new-seed-title"
+        aria-labelledby="modal-new-plant-title"
       >
-        <Box component="form" onSubmit={handleNewSeed} sx={style}>
+        <Box component="form" onSubmit={handleNewPlant} sx={style}>
           <Stack spacing={2} direction="column">
-            <Typography id="modal-new-seed-title" variant="h6" component="h2">
+            <Typography id="modal-new-plant-title" variant="h6" component="h2">
               Add Seed
             </Typography>
             <TextField

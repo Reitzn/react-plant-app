@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState } from "react";
 import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
-import { black, teal, amber, deepOrange, grey } from '@mui/material/colors';
+import { teal, grey } from '@mui/material/colors';
 
 
 export const ColorModeContext = React.createContext({

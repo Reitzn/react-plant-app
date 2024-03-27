@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import ForestIcon from "@mui/icons-material/Forest";
 
-import { useAuth } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
@@ -26,8 +22,8 @@ import ColorModeToggle from "./ColorModeToggle";
 import { authRoutes } from "../../utils/const";
 
 function ResponsiveAppBar() {
-  const { session } = useAuth();
-
+  const userSession = useSelector((state) => state.userSession);
+  
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -83,7 +79,7 @@ function ResponsiveAppBar() {
             RPA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {session &&
+            {userSession?.user &&
               authRoutes.map((route) => (
                 <Button
                   key={route.to}
@@ -99,7 +95,7 @@ function ResponsiveAppBar() {
           </Box>
           <Stack spacing={2} direction="row">
             <ColorModeToggle />
-            {session ? (
+            {userSession?.user ? (
               <UserDropdown />
             ) : (
               <>

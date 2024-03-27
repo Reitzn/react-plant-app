@@ -1,15 +1,14 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
-import { AuthProvider } from "./context/AuthContext";
 import { ColorModeContextProvider } from "./context/ColorModeContext";
 
 import ErrorPage from "./routes/ErrorPage";
 
-import Root from "./routes/Root";
+import Home from "./routes/Home";
 import Account from "./routes/Account";
 import Seeds from "./routes/Seeds";
 import Plants from "./routes/Plants";
@@ -17,13 +16,18 @@ import Users from "./routes/Users";
 
 import Header from "./components/header/Header";
 
+import { supabase } from "./supabaseClient";
+import { setUserSession } from "./features/userSession/userSessionSlice";
+import { getUserAction } from "./features/user/userSlice";
+import {getSeedsAction} from "./features/seeds/seedsSlice";
+
+import { useSelector, useDispatch } from "react-redux";
+
 const Layout = () => (
   <ColorModeContextProvider>
-    <AuthProvider>
-      <CssBaseline />
-      <Header />
-      <Outlet />
-    </AuthProvider>
+    <CssBaseline />
+    <Header />
+    <Outlet />
   </ColorModeContextProvider>
 );
 
@@ -34,7 +38,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Root />,
+        element: <Home />,
       },
       {
         path: "account",
@@ -57,6 +61,32 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log("session 1: ", session);
+      // dispatch(setUserSession(session));
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log("session 2: ", session);
+      if (session?.user) {
+        console.log("Here With user ");
+        dispatch(setUserSession(session));
+        dispatch(getUserAction(session?.user?.id))
+        dispatch(getSeedsAction(session?.user?.id))
+      } else {
+        dispatch(setUserSession({}));
+        // To-Do: Need to reset other context to empty
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <div className="App">
       <RouterProvider router={router} />

@@ -1,27 +1,18 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import Stack from "@mui/material/Stack";
-import ForestIcon from "@mui/icons-material/Forest";
-
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { useAuth } from "../../context/AuthContext";
 
 import { authRoutes } from "../../utils/const";
 
 export default function MobileMenu() {
-  const { session } = useAuth();
+  const userSession = useSelector((state) => state.userSession);
 
-  console.log(session);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -35,7 +26,7 @@ export default function MobileMenu() {
   const navigate = useNavigate();
 
   return (
-    session && (
+    userSession?.user && (
       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
         <IconButton
           size="large"
