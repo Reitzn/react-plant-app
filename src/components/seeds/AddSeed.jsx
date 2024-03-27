@@ -6,8 +6,17 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+ 
+import {addSeedAction} from "../../features/seeds/seedsSlice"
 
 import { supabase } from "../../supabaseClient";
+
+import { useSelector, useDispatch } from "react-redux";
+import { addSeed } from "../../features/seeds/seedsSlice";
 
 const style = {
   position: "absolute",
@@ -23,6 +32,10 @@ const style = {
 };
 
 export default function AddSeed() {
+  const userSession = useSelector((state) => state.userSession);
+
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -37,52 +50,24 @@ export default function AddSeed() {
   const handleLogin = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email = data.get("email");
-    const password = data.get("password");
 
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const newSeed = {
+      user_id: userSession.user.id,
+      common_name: data.get("common_name"),
+      scientific_name: data.get("scientific_name"),
+      date_sowed: data.get("date_sowed"),
+    };
 
-    // to-do: Get this to go way after typing?!?! Finish login for error handling
-    if (!email) {
-      setEmailError(true);
-      setEmailErrorText("Email is required");
-    } else {
-      setEmailError(false);
-    }
-    if (!password) {
-      setPasswordError(true);
-      setPasswordErrorText("Password is required");
-    } else {
-      setPasswordError(false);
-    }
-    if (!email || !password) {
-      return;
-    }
-
-    setLoading(true);
-    
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      alert(error.error_description || error.message);
-    } else {
-      alert("Check your email for the login link!");
-    }
-    setLoading(false);
+    console.log(newSeed);
+    setLoading(true)
+    dispatch(addSeedAction(newSeed));
+    setLoading(false)
+    handleClose();
   };
 
   return (
     <div>
-      <Button
-        variant="contained"
-        onClick={handleOpen}
-      >
+      <Button variant="contained" onClick={handleOpen}>
         Add Seed
       </Button>
       <Modal
@@ -93,31 +78,35 @@ export default function AddSeed() {
         <Box component="form" onSubmit={handleLogin} noValidate sx={style}>
           <Stack spacing={2} direction="column">
             <Typography id="modal-login-title" variant="h6" component="h2">
-              Login
+              Add Seed
             </Typography>
             <TextField
               required
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              label="Common Name"
+              name="common_name"
               fullWidth
               autoFocus
             />
             <TextField
               required
               fullWidth
-              label="Password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
+              label="Scientific Name"
+              name="scientific_name"
             />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label="Date Sowed"
+                name="date_sowed"
+                defaultValue={dayjs()}
+              />
+            </LocalizationProvider>
             <LoadingButton
               variant="contained"
               loading={loading}
               type="submit"
               fullWidth
             >
-              Login
+              Make It
             </LoadingButton>
           </Stack>
         </Box>

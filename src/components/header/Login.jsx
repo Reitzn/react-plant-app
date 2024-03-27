@@ -6,7 +6,6 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import LoadingButton from "@mui/lab/LoadingButton";
-
 import { supabase } from "../../supabaseClient";
 
 const style = {
@@ -40,11 +39,6 @@ export default function Login() {
     const email = data.get("email");
     const password = data.get("password");
 
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-
     // to-do: Get this to go way after typing?!?! Finish login for error handling
     if (!email) {
       setEmailError(true);
@@ -71,9 +65,8 @@ export default function Login() {
 
     if (error) {
       alert(error.error_description || error.message);
-    } else {
-      alert("Check your email for the login link!");
     }
+
     setLoading(false);
   };
 

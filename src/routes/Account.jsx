@@ -1,56 +1,53 @@
 import { useState, useEffect, useContext } from "react";
 import { supabase } from "../supabaseClient";
 
-import { useAuth } from "../context/AuthContext";
-
 import Avatar from "../components/Avatar";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Account() {
+  const user = useSelector((state) => state.user);
+  console.log(user?.userData);
+
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
 
-  const { session } = useAuth();
-  console.log(session);
+  // useEffect(() => {
+  //   let ignore = false;
+  //   async function getProfile() {
+  //     setLoading(true);
 
-  useEffect(() => {
-    let ignore = false;
-    async function getProfile() {
-      setLoading(true);
-      const { user } = session;
+  //     const { data, error } = await supabase
+  //       .from("profiles")
+  //       .select(`username, website, avatar_url`)
+  //       .eq("id", user.userSession.user.id)
+  //       .single();
 
-      const { data, error } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
-        .eq("id", user.id)
-        .single();
+  //     if (!ignore) {
+  //       if (error) {
+  //         console.warn(error);
+  //       } else if (data) {
+  //         setUsername(data.username);
+  //         setWebsite(data.website);
+  //         setAvatarUrl(data.avatar_url);
+  //       }
+  //     }
 
-      if (!ignore) {
-        if (error) {
-          console.warn(error);
-        } else if (data) {
-          setUsername(data.username);
-          setWebsite(data.website);
-          setAvatarUrl(data.avatar_url);
-        }
-      }
+  //     setLoading(false);
+  //   }
 
-      setLoading(false);
-    }
+  //   getProfile();
 
-    getProfile();
-
-    return () => {
-      ignore = true;
-    };
-  }, [session]);
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, [user]);
 
   async function updateProfile(event, avatarUrl) {
     event.preventDefault();
 
     setLoading(true);
-    const { user } = session;
 
     const updates = {
       id: user.id,
@@ -82,7 +79,7 @@ export default function Account() {
         />
         <div>
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" value={session?.user?.email} disabled />
+          <input id="email" type="text" value={user?.userData?.email} disabled />
         </div>
         <div>
           <label htmlFor="username">Name</label>
