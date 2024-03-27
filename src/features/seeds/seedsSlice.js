@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "../../supabaseClient";
+import { addPlantAction } from "../plants/plantsSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const initialState = {
   loading: false,
@@ -59,11 +61,39 @@ export const updateSeedAction = createAsyncThunk(
   }
 );
 
+// Pot Up Seed
+export const potUpSeedAction = createAsyncThunk(
+  "seeds/potUpSeedAction",
+  async (updatedSeed, { dispatch }) => {
+    // This kind of app logic needs to be moved to back end function
+
+    const { data, error } = await supabase
+      .from("seeds")
+      .update(updatedSeed)
+      .eq("id", updatedSeed.id)
+      .select()
+      .single();
+
+      console.log(data)
+
+    const newPlant = {
+      seed_id: data.id,
+      user_id: data.user_id,
+      common_name: data.common_name,
+      scientific_name: data.scientific_name,
+      date_potted: data.date_potted
+    }
+
+    dispatch(addPlantAction(newPlant))
+
+    return data;
+  }
+);
+
 export const seedsSlice = createSlice({
   name: "seeds",
   initialState: initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers(builder) {
     // Get Seeds
     builder.addCase(getSeedsAction.pending, (state) => {
@@ -72,7 +102,6 @@ export const seedsSlice = createSlice({
     builder.addCase(getSeedsAction.fulfilled, (state, action) => {
       state.loading = false;
       state.seedsData = action.payload;
-      console.log(action.payload);
     });
     builder.addCase(getSeedsAction.rejected, (state, action) => {
       state.loading = false;
@@ -118,6 +147,21 @@ export const seedsSlice = createSlice({
       );
     });
     builder.addCase(updateSeedAction.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message || "";
+    });
+
+    // Pot Up Seed
+    builder.addCase(potUpSeedAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(potUpSeedAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.seedsData = state.seedsData.filter(
+        (seed) => seed.id !== action.payload.id
+      );
+    });
+    builder.addCase(potUpSeedAction.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message || "";
     });

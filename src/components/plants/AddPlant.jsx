@@ -11,7 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-import { addSeedAction } from "../../features/seeds/seedsSlice";
+import { addPlantAction } from "../../features/plants/plantsSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -30,7 +30,7 @@ const style = {
 
 export default function AddPlant() {
   const userSession = useSelector((state) => state.userSession);
-  const seeds = useSelector((state) => state.seeds);
+  const plants = useSelector((state) => state.plants);
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -42,16 +42,16 @@ export default function AddPlant() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const newSeed = {
+    const newPlant = {
       user_id: userSession.user.id,
       common_name: data.get("common_name"),
       scientific_name: data.get("scientific_name"),
-      date_sowed: data.get("date_sowed"),
+      date_potted: data.get("date_potted"),
     };
 
-    // dispatch(addSeedAction(newSeed)).then(() => {
-    //   handleClose();
-    // });
+    dispatch(addPlantAction(newPlant)).then(() => {
+      handleClose();
+    });
   };
 
   return (
@@ -67,7 +67,7 @@ export default function AddPlant() {
         <Box component="form" onSubmit={handleNewPlant} sx={style}>
           <Stack spacing={2} direction="column">
             <Typography id="modal-new-plant-title" variant="h6" component="h2">
-              Add Seed
+              Add Plant
             </Typography>
             <TextField
               required
@@ -84,14 +84,14 @@ export default function AddPlant() {
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="Date Sowed"
-                name="date_sowed"
+                label="Date Potted"
+                name="date_potted"
                 defaultValue={dayjs()}
               />
             </LocalizationProvider>
             <LoadingButton
               variant="contained"
-              loading={seeds?.loading}
+              loading={plants?.loading}
               type="submit"
               fullWidth
             >

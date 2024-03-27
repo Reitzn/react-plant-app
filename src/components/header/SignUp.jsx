@@ -44,11 +44,6 @@ export default function SignUp() {
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword");
 
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      confirmPassword: data.get("confirmPassword"),
-    });
 
     // to-do: Get this to go way after typing?!?! Finish login for error handling
     if (!email) {
@@ -85,13 +80,14 @@ export default function SignUp() {
       password,
     });
 
+    setLoading(false);
+    handleClose()
+
     if (error) {
       alert(error.error_description || error.message);
     } else {
-      alert("Check your email for the login link!");
+      alert("Check your email to verify your account!");
     }
-
-    setLoading(false);
   };
 
   return (
