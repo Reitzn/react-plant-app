@@ -80,6 +80,7 @@ function App() {
         dispatch(getSeedsAction(session?.user?.id))
       } else {
         dispatch(setUserSession({}));
+        // To-Do: Need to reset other context to empty
       }
     });
 

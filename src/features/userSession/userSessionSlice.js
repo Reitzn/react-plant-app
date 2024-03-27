@@ -17,7 +17,7 @@ export const userSessionSlice = createSlice({
       return action.payload;
     },
     removeUserSession: (state) => {
-      state = {};
+      state = initialState;
     },
   },
 });

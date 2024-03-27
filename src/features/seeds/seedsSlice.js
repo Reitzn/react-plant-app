@@ -16,7 +16,6 @@ export const getSeedsAction = createAsyncThunk(
       .select()
       .eq("user_id", userId);
 
-    console.log("data", data);
     return data;
   }
 );
@@ -31,7 +30,6 @@ export const addSeedAction = createAsyncThunk(
       .select()
       .single();
 
-    console.log("data", data);
     return data;
   }
 );
@@ -42,8 +40,6 @@ export const deleteSeedAction = createAsyncThunk(
   async (seedId) => {
     const { error } = await supabase.from("seeds").delete().eq("id", seedId);
 
-    // console.log("error", error);
-    // return error;
     return seedId;
   }
 );
@@ -59,10 +55,6 @@ export const updateSeedAction = createAsyncThunk(
       .select()
       .single();
 
-    console.log(updatedSeed);
-
-    console.log("data", data);
-    // return error;
     return data;
   }
 );
@@ -71,19 +63,6 @@ export const seedsSlice = createSlice({
   name: "seeds",
   initialState: initialState,
   reducers: {
-    addSeed: (state, action) => {
-      state.push(action.payload);
-    },
-    deleteSeed: (state, action) => {
-      return state.filter((seed) => seed.id !== action.payload);
-    },
-    updateSeed: (state, action) => {
-      const updatedItem = action.payload;
-      const index = state.findIndex((item) => item.id === updatedItem.id);
-      if (index !== -1) {
-        state[index] = updatedItem;
-      }
-    },
   },
   extraReducers(builder) {
     // Get Seeds
@@ -144,8 +123,5 @@ export const seedsSlice = createSlice({
     });
   },
 });
-
-// Action creators are generated for each case reducer function
-export const { addSeed, deleteSeed, updateSeed } = seedsSlice.actions;
 
 export default seedsSlice.reducer;

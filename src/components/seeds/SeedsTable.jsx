@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,25 +8,20 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import dayjs from "dayjs";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
-  deleteSeed,
-  updateSeed,
   deleteSeedAction,
   updateSeedAction,
 } from "../../features/seeds/seedsSlice";
 
 export default function SeedsTable() {
-  // var customParseFormat = require('dayjs/plugin/customParseFormat')
-  // dayjs.extend(customParseFormat)
-
   const seeds = useSelector((state) => state.seeds);
   const dispatch = useDispatch();
-
-  console.log(seeds?.seedsData);
 
   return (
     <TableContainer component={Paper}>
@@ -35,7 +30,7 @@ export default function SeedsTable() {
           <TableRow>
             <TableCell>Plant</TableCell>
             <TableCell align="right">Date Sowed</TableCell>
-            <TableCell align="right">Date Popped</TableCell>
+            <TableCell align="right">Date Germinated</TableCell>
             <TableCell></TableCell>
             <TableCell></TableCell>
           </TableRow>
@@ -64,7 +59,7 @@ export default function SeedsTable() {
                       );
                     }}
                   >
-                    Seed Popped
+                    Seed Germinated
                   </Button>
                 )}
               </TableCell>
@@ -76,7 +71,8 @@ export default function SeedsTable() {
                   aria-label="edit"
                   onClick={() => dispatch(deleteSeedAction(row.id))}
                 >
-                  <MoreVertIcon />
+                  {/* <MoreVertIcon /> */}
+                  <DeleteIcon />
                 </IconButton>
               </TableCell>
             </TableRow>

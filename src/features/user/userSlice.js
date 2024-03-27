@@ -12,8 +12,21 @@ export const getUserAction = createAsyncThunk(
   async (userId) => {
     const { data, error } = await supabase
       .from("profiles")
-      .select(`username, website, avatar_url`)
+      .select()
       .eq("id", userId)
+      .single();
+
+    return data;
+  }
+);
+
+export const updateUserAction = createAsyncThunk(
+  "user/updateUserAction",
+  async (updates) => {
+    const { data, error } = await supabase
+      .from("profiles")
+      .upsert(updates)
+      .select()
       .single();
 
     return data;
@@ -25,6 +38,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
+    
+    // Get User
     builder.addCase(getUserAction.pending, (state) => {
       state.loading = true;
     });
@@ -34,6 +49,21 @@ export const userSlice = createSlice({
       state.error = "";
     });
     builder.addCase(getUserAction.rejected, (state, action) => {
+      state.loading = false;
+      state.userData = null;
+      state.error = action.error.message || "";
+    });
+
+    // Update User 
+    builder.addCase(updateUserAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateUserAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userData = action.payload;
+      state.error = "";
+    });
+    builder.addCase(updateUserAction.rejected, (state, action) => {
       state.loading = false;
       state.userData = null;
       state.error = action.error.message || "";

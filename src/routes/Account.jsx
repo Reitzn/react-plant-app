@@ -1,126 +1,64 @@
-import { useState, useEffect, useContext } from "react";
-import { supabase } from "../supabaseClient";
+import React from "react";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import LoadingButton from "@mui/lab/LoadingButton";
 
-import Avatar from "../components/Avatar";
 import { useSelector, useDispatch } from "react-redux";
+
+import { updateUserAction } from "../features/user/userSlice";
 
 export default function Account() {
   const user = useSelector((state) => state.user);
-  console.log(user?.userData);
+  const userSession = useSelector((state) => state.userSession);
+  const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
-
-  // useEffect(() => {
-  //   let ignore = false;
-  //   async function getProfile() {
-  //     setLoading(true);
-
-  //     const { data, error } = await supabase
-  //       .from("profiles")
-  //       .select(`username, website, avatar_url`)
-  //       .eq("id", user.userSession.user.id)
-  //       .single();
-
-  //     if (!ignore) {
-  //       if (error) {
-  //         console.warn(error);
-  //       } else if (data) {
-  //         setUsername(data.username);
-  //         setWebsite(data.website);
-  //         setAvatarUrl(data.avatar_url);
-  //       }
-  //     }
-
-  //     setLoading(false);
-  //   }
-
-  //   getProfile();
-
-  //   return () => {
-  //     ignore = true;
-  //   };
-  // }, [user]);
-
-  async function updateProfile(event, avatarUrl) {
+  const handleUpdateUser = async (event) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
 
-    setLoading(true);
-
-    const updates = {
-      id: user.id,
-      username,
-      website,
-      avatar_url: avatarUrl,
-      updated_at: new Date(),
+    const updatedUser = {
+      id: userSession.user.id,
+      username: data.get("username"),
+      full_name: data.get("full_name"),
     };
 
-    const { error } = await supabase.from("profiles").upsert(updates);
-
-    if (error) {
-      alert(error.message);
-    } else {
-      setAvatarUrl(avatarUrl);
-    }
-    setLoading(false);
-  }
+    dispatch(updateUserAction(updatedUser));
+  };
 
   return (
     <div className="page">
-      <form onSubmit={updateProfile} className="form-widget">
-        <Avatar
-          url={avatar_url}
-          size={150}
-          onUpload={(event, url) => {
-            updateProfile(event, url);
-          }}
+      <Typography variant="h3" component="h1">
+        Welcome
+      </Typography>
+      <Box component="form" onSubmit={handleUpdateUser} noValidate>
+        <TextField
+          label="Email"
+          defaultValue={userSession?.user?.email}
+          disabled
+          variant="outlined"
         />
-        <div>
-          <label htmlFor="email">Email</label>
-          <input id="email" type="text" value={user?.userData?.email} disabled />
-        </div>
-        <div>
-          <label htmlFor="username">Name</label>
-          <input
-            id="username"
-            type="text"
-            required
-            value={username || ""}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="website">Website</label>
-          <input
-            id="website"
-            type="url"
-            value={website || ""}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-        </div>
+        <TextField
+          label="User Name"
+          name="username"
+          defaultValue={user?.userData?.username}
+          variant="outlined"
+        />
+        <TextField
+          label="Name"
+          name="full_name"
+          defaultValue={user?.userData?.full_name}
+          variant="outlined"
+        />
 
-        <div>
-          <button
-            className="button block primary"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Loading ..." : "Update"}
-          </button>
-        </div>
-
-        <div>
-          <button
-            className="button block"
-            type="button"
-            onClick={() => supabase.auth.signOut()}
-          >
-            Sign Out
-          </button>
-        </div>
-      </form>
+        <LoadingButton
+          variant="contained"
+          loading={user?.loading}
+          type="submit"
+        >
+          Update
+        </LoadingButton>
+      </Box>
     </div>
   );
 }
