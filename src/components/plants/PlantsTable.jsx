@@ -7,8 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 // import MoreVertIcon from "@mui/icons-material/MoreVert";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 import dayjs from "dayjs";
 
@@ -18,6 +20,7 @@ import { deletePlantAction } from "../../features/plants/plantsSlice";
 export default function PlantsTable() {
   const plants = useSelector((state) => state.plants);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <TableContainer component={Paper}>
@@ -27,6 +30,7 @@ export default function PlantsTable() {
             <TableCell>Plant</TableCell>
             <TableCell align="right">Scientific Name</TableCell>
             <TableCell align="right">Date Potted</TableCell>
+            <TableCell></TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
@@ -41,7 +45,9 @@ export default function PlantsTable() {
               </TableCell>
               <TableCell align="right">{row.scientific_name}</TableCell>
               <TableCell align="right">{row.date_potted}</TableCell>
-            
+              <TableCell align="right">
+                <Button variant="text" onClick={() => navigate(row.id)} >View</Button>
+              </TableCell>
               <TableCell align="right">
                 <IconButton
                   aria-label="edit"

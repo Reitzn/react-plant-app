@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { updateUserAction } from "../features/user/userSlice";
 
+import AddPlantCatalog from "../components/plantCatalog/AddPlantCatalog";
+
 export default function Account() {
   const user = useSelector((state) => state.user);
   const userSession = useSelector((state) => state.userSession);
@@ -59,6 +61,11 @@ export default function Account() {
           Update
         </LoadingButton>
       </Box>
+      {user?.userData?.admin && (
+        <>
+          <AddPlantCatalog />
+        </>
+      )}
     </div>
   );
 }

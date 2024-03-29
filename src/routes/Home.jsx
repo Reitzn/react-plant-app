@@ -5,25 +5,25 @@ import Box from "@mui/material/Box";
 export default function Home() {
   return (
     <div className="page">
-      <Typography variant="h3" component="h1">
+      <Typography variant="h3" component="h1" gutterBottom>
         Your Ultimate Plant Tracker
       </Typography>
-      <Typography variant="h4" component="h2">
+      <Typography variant="h4" component="h2" gutterBottom>
         Grow, Track, and Cultivate Your Garden with Ease
       </Typography>
-      <Typography variant="h4" component="h2">
+      <Typography variant="h4" component="h2" gutterBottom>
         Why React Plant App?
       </Typography>
-      <Typography variant="body1" component="body1">
+      <Typography variant="body1" component="body1" gutterBottom>
         React Plant App is your go-to companion for managing your seeds and
         plants. Whether you're an experienced gardener or just starting out,
         React Plant App provides the tools you need to cultivate your garden and
         watch it flourish.
       </Typography>
-      <Typography variant="h5" component="h2">
-        Features:
+      <Typography variant="h5" component="h2" gutterBottom>
+        Features
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography variant="body1" component="p" gutterBottom>
         <Box fontWeight="fontWeightMedium" display="inline">
           Seed Catalog:
         </Box>
@@ -31,7 +31,7 @@ export default function Home() {
         and season. Find the perfect additions to your garden and add them to
         your collection with a simple click.
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography variant="body1" component="p" gutterBottom>
         <Box fontWeight="fontWeightMedium" display="inline">
           Plant Tracker:
         </Box>
@@ -39,7 +39,7 @@ export default function Home() {
         location. Log watering schedules, note milestones, and monitor their
         health effortlessly.
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography variant="body1" component="p" gutterBottom>
         <Box fontWeight="fontWeightMedium" display="inline">
           Customizable Reminders:
         </Box>
@@ -47,7 +47,7 @@ export default function Home() {
         based on your plants' specific needs and receive notifications straight
         to your device.
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography variant="body1" component="p" gutterBottom>
         <Box fontWeight="fontWeightMedium" display="inline">
           Community Forum:
         </Box>
@@ -55,7 +55,7 @@ export default function Home() {
         seek advice from experienced growers. Join discussions, ask questions,
         and learn from a vibrant community of plant lovers.
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography variant="body1" component="p" gutterBottom>
         <Box fontWeight="fontWeightMedium" display="inline">
           Garden Journal:
         </Box>
@@ -63,13 +63,12 @@ export default function Home() {
         Capture photos, jot down observations, and record your successes (and
         challenges) as your garden evolves over time.
       </Typography>
-      <Typography variant="h5" component="h4">
+      <Typography variant="h5" component="h4" gutterBottom>
         Want To Help?
       </Typography>
-      <Typography variant="body1" component="body1">
+      <Typography variant="body1" component="p" gutterBottom>
         Join our community and come check us out on GitHub.
       </Typography>
-      [Facebook Icon] [Twitter Icon] [Instagram Icon]
     </div>
   );
 }

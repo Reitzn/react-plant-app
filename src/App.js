@@ -12,6 +12,7 @@ import Home from "./routes/Home";
 import Account from "./routes/Account";
 import Seeds from "./routes/Seeds";
 import Plants from "./routes/Plants";
+import Plant from "./routes/Plant";
 import Users from "./routes/Users";
 
 import Header from "./components/header/Header";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "plants",
         element: <Plants />,
+      },
+      {
+        path: "plants/:plantId",
+        element: <Plant />,
       },
       {
         path: "users",
