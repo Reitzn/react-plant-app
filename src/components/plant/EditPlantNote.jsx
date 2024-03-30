@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -14,14 +15,23 @@ import { DatePicker } from "@mui/x-date-pickers";
 
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-import { addPlantNoteAction } from "../../features/plants/plantNoteSlice";
+import {
+  updatePlantNoteAction,
+  deletePlantNoteAction,
+} from "../../features/plants/plantNoteSlice";
 import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 
-export default function AddPlantNote() {
+export default function EditPlantNote(props) {
   const dispatch = useDispatch();
   const userSession = useSelector((state) => state.userSession);
+  const plantNotes = useSelector((state) => state.plantNotes);
+
+  const { plantNoteId } = props;
+  const plantNote = plantNotes?.plantNotesData?.find(
+    (plantNote) => plantNote?.id === plantNoteId
+  );
 
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +46,7 @@ export default function AddPlantNote() {
     const data = new FormData(event.currentTarget);
 
     const newPlantNote = {
+      id: plantNote?.id,  
       user_id: userSession?.user?.id,
       plant_id: plantId,
       date: data.get("date"),
@@ -43,7 +54,7 @@ export default function AddPlantNote() {
       description: data.get("note"),
     };
 
-    dispatch(addPlantNoteAction(newPlantNote));
+    dispatch(updatePlantNoteAction(newPlantNote));
 
     setIsLoading(false);
     handleClose();
@@ -64,34 +75,47 @@ export default function AddPlantNote() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Add</Button>
+      <IconButton onClick={() => setOpen(true)} aria-label="edit">
+        <EditNoteIcon />
+      </IconButton>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-plant-note-title"
+        aria-labelledby="modal-edit-plant-note-title"
       >
         <Box sx={style} component="form" onSubmit={handleSubmit} noValidate>
           <Stack spacing={2} direction="column">
             <Typography
-              id="modal-plant-note-title"
+              id="modal-edit-plant-note-title"
               variant="h6"
               component="h2"
               gutterBottom
             >
-              Add Note
+              Edit Note
             </Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker label="Date" name="date" defaultValue={dayjs()} />
+              <DatePicker
+                label="Date"
+                name="date"
+                defaultValue={dayjs(plantNote?.date)}
+              />
             </LocalizationProvider>
             <TextField
               id="type"
               name="type"
               label="Type"
               variant="outlined"
-              defaultValue=""
+              defaultValue={plantNote?.type}
               fullWidth
             />
-            <TextField name="note" label="Note" multiline rows={4} fullWidth />
+            <TextField
+              name="note"
+              label="Note"
+              defaultValue={plantNote?.description}
+              multiline
+              rows={4}
+              fullWidth
+            />
             <LoadingButton
               type="submit"
               variant="contained"
@@ -100,7 +124,17 @@ export default function AddPlantNote() {
               size="large"
               fullWidth
             >
-              Add
+              Save
+            </LoadingButton>
+            <LoadingButton
+              variant="contained"
+              loading={isLoading}
+              color="error"
+              size="large"
+              fullWidth
+              onClick={() => dispatch(deletePlantNoteAction(plantNote?.id))}
+            >
+              Delete
             </LoadingButton>
           </Stack>
         </Box>

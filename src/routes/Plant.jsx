@@ -25,15 +25,6 @@ export default function PlantPage() {
   const plants = useSelector((state) => state.plants);
   const { plantId } = useParams();
   const plant = plants?.plantsData?.find((plant) => plant.id === plantId);
-  console.log(plants)
-
-  console.log(plant)
-
-  // const plant = plants?.find((plant) => plant.uid === plantUid);
-
-
-
-  // https://smartdevpreneur.com/setting-material-ui-grid-item-height/
 
   return (
     <Container>

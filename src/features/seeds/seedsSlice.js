@@ -74,8 +74,6 @@ export const potUpSeedAction = createAsyncThunk(
       .select()
       .single();
 
-      console.log(data)
-
     const newPlant = {
       seed_id: data.id,
       user_id: data.user_id,

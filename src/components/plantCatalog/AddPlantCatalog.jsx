@@ -47,8 +47,6 @@ export default function AddPlantCatalog() {
 
     isLoading(false);
     handleClose();
-
-    console.log(data);
   };
 
   return (

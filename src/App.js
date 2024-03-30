@@ -22,6 +22,7 @@ import { setUserSession } from "./features/userSession/userSessionSlice";
 import { getUserAction } from "./features/user/userSlice";
 import { getSeedsAction } from "./features/seeds/seedsSlice";
 import { getPlantsAction } from "./features/plants/plantsSlice";
+import { getPlantNoteAction } from "./features/plants/plantNoteSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -85,6 +86,7 @@ function App() {
         dispatch(getUserAction(session?.user?.id));
         dispatch(getSeedsAction(session?.user?.id));
         dispatch(getPlantsAction(session?.user?.id));
+        dispatch(getPlantNoteAction(session?.user?.id))
       } else {
         dispatch(setUserSession({}));
         // To-Do: Need to reset other context to empty
