@@ -1,6 +1,6 @@
 # Welcome to React Plant App
 
-This project was created to create an amazing seed-to-harvest application for the users, by the users. 
+This project was created to build an amazing seed-to-harvest application for the users, by the users. 
 
 ## NFC Tags 
 
