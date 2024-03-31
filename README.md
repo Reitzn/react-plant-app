@@ -1,3 +1,24 @@
+# Welcome to React Plant App
+
+This project was created to create an amazing seed-to-harvest application for the users, by the users. 
+
+## NFC Tags 
+
+It is easy to create a digital plant tags! And very cheep, tracking  your plants can become very simple. 
+
+### Get some NFC Tags 
+
+Check out Amazon, there are some good NFC Tags that are in PFC that are wartter proof and have 3M tape on them, they are good. 
+
+
+### Program Them 
+
+NFC Editor can wrie URL's to NFC tags, take your plants URL and prgram it to a tag.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
