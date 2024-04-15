@@ -5,7 +5,8 @@ import userSessionReducer from "./features/userSession/userSessionSlice";
 import plantReducer from "./features/plants/plantsSlice";
 import plantNotesReducer from "./features/plants/plantNoteSlice";
 
-export default configureStore({
+export const setupStore = preloadedState => {
+  return configureStore({
   reducer: {
     userSession: userSessionReducer,
     user: userReducer,
@@ -13,4 +14,5 @@ export default configureStore({
     plants: plantReducer,
     plantNotes: plantNotesReducer,
   },
-});
+  preloadedState
+})};

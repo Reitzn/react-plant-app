@@ -1,0 +1,245 @@
+{
+  "userSession": {
+    "access_token": "..eyJ.0rLEL8",
+    "token_type": "bearer",
+    "expires_in": 3600,
+    "expires_at": 1711925545,
+    "refresh_token": "...",
+    "user": {
+      "id": "...",
+      "aud": "authenticated",
+      "role": "authenticated",
+      "email": "test@test.com",
+      "email_confirmed_at": "2024-03-16T03:26:08.374945Z",
+      "phone": "",
+      "confirmation_sent_at": "2024-03-16T03:25:40.570071Z",
+      "confirmed_at": "2024-03-16T03:26:08.374945Z",
+      "last_sign_in_at": "2024-03-29T04:07:21.203961Z",
+      "app_metadata": {
+        "provider": "email",
+        "providers": ["email"]
+      },
+      "user_metadata": {
+        "email": "test@test.com",
+        "email_verified": false,
+        "phone_verified": false,
+        "sub": "..."
+      },
+      "identities": [
+        {
+          "identity_id": "..",
+          "id": "..",
+          "user_id": "..",
+          "identity_data": {
+            "email": "reitznia@gmail.com",
+            "email_verified": false,
+            "phone_verified": false,
+            "sub": ".."
+          },
+          "provider": "email",
+          "last_sign_in_at": "2024-03-16T03:25:40.567543Z",
+          "created_at": "2024-03-16T03:25:40.567594Z",
+          "updated_at": "2024-03-16T03:25:40.567594Z",
+          "email": "test@test.com"
+        }
+      ],
+      "created_at": "2024-03-16T03:25:40.564592Z",
+      "updated_at": "2024-03-31T21:52:25.971172Z",
+      "is_anonymous": false
+    }
+  },
+  "user": {
+    "loading": false,
+    "error": "",
+    "userData": {
+      "id": ".",
+      "updated_at": null,
+      "username": "Tester",
+      "full_name": "Testy McTesterson",
+      "avatar_url": null,
+      "website": null,
+      "admin": true
+    }
+  },
+  "seeds": {
+    "loading": false,
+    "error": "",
+    "seedsData": [
+      {
+        "id": "d8092c4e-df08-43b8-a8e9-767cece6b54d",
+        "created_at": "2024-03-28T01:56:01.218785+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "new new",
+        "scientific_name": "asdf asdf",
+        "date_sowed": "2024-03-27",
+        "date_germinated": "2024-03-28",
+        "date_potted": "2024-03-28",
+        "active": false
+      },
+      {
+        "id": "f1edd83c-e2cd-4f2e-a931-473399b4830b",
+        "created_at": "2024-03-27T01:09:58.815314+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "new two 3",
+        "scientific_name": "test 32",
+        "date_sowed": "2024-03-26",
+        "date_germinated": "2024-03-27",
+        "date_potted": null,
+        "active": true
+      },
+      {
+        "id": "0fdc4c5d-85ae-4dbd-bb29-f591c6573819",
+        "created_at": "2024-03-28T02:00:12.628394+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "new two",
+        "scientific_name": "mew three ",
+        "date_sowed": "2024-03-27",
+        "date_germinated": "2024-03-28",
+        "date_potted": "2024-03-28",
+        "active": false
+      },
+      {
+        "id": "206e19ec-2d07-41e7-b95f-f7b66d413446",
+        "created_at": "2024-03-27T16:27:21.485617+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "stuff",
+        "scientific_name": "adf asdf ",
+        "date_sowed": "2024-03-27",
+        "date_germinated": "2024-03-27",
+        "date_potted": "2024-03-28",
+        "active": false
+      },
+      {
+        "id": "db7fc6b7-0006-43a0-83d7-6c20f113704f",
+        "created_at": "2024-03-28T02:26:12.192932+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "new new",
+        "scientific_name": "mew three ",
+        "date_sowed": "2024-03-27",
+        "date_germinated": "2024-03-28",
+        "date_potted": "2024-03-28",
+        "active": false
+      },
+      {
+        "id": "3f023e48-2563-4eea-9af2-805bfbf216f1",
+        "created_at": "2024-03-28T14:18:02.616291+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "ad fa df",
+        "scientific_name": "asdf adsf",
+        "date_sowed": "2024-03-28",
+        "date_germinated": "2024-03-28",
+        "date_potted": "2024-03-28",
+        "active": false
+      },
+      {
+        "id": "bf69f9eb-9aa9-4852-bd19-b4fc1fde3d4d",
+        "created_at": "2024-03-29T04:12:43.852447+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "common_name": "Plant ",
+        "scientific_name": "Plant plant ",
+        "date_sowed": "2024-03-29",
+        "date_germinated": null,
+        "date_potted": null,
+        "active": true
+      }
+    ]
+  },
+  "plants": {
+    "loading": false,
+    "error": "",
+    "plantsData": [
+      {
+        "id": "e4a65782-994e-43fa-ab90-dd783bd6e2f2",
+        "created_at": "2024-03-28T02:00:31.652711+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "seed_id": "0fdc4c5d-85ae-4dbd-bb29-f591c6573819",
+        "common_name": "new two",
+        "scientific_name": "mew three ",
+        "date_potted": "2024-03-28",
+        "main_img_url": "https://placehold.co/200x200"
+      },
+      {
+        "id": "685c2c45-3905-47ac-85e8-8c5aebe82c2a",
+        "created_at": "2024-03-28T02:24:05.018951+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "seed_id": "206e19ec-2d07-41e7-b95f-f7b66d413446",
+        "common_name": "stuff",
+        "scientific_name": "adf asdf ",
+        "date_potted": "2024-03-28",
+        "main_img_url": "https://placehold.co/200x200"
+      },
+      {
+        "id": "3b7c0705-e9df-4a06-a5ad-324f38080447",
+        "created_at": "2024-03-28T02:26:18.756221+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "seed_id": "db7fc6b7-0006-43a0-83d7-6c20f113704f",
+        "common_name": "new new",
+        "scientific_name": "mew three ",
+        "date_potted": "2024-03-28",
+        "main_img_url": "https://placehold.co/200x200"
+      },
+      {
+        "id": "e4a95f4e-0d39-4066-bee3-cd27a6b6fff5",
+        "created_at": "2024-03-29T20:04:35.205723+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "seed_id": null,
+        "common_name": "Adanson’s monstera",
+        "scientific_name": "Monstera adansonii",
+        "date_potted": "2024-03-29",
+        "main_img_url": "https://placehold.co/200x200"
+      },
+      {
+        "id": "a0e23c2f-c74a-4703-a1a9-d26343ad1679",
+        "created_at": "2024-03-29T20:42:07.350997+00:00",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "seed_id": null,
+        "common_name": "Swiss cheese plant",
+        "scientific_name": "Monstera deliciosa",
+        "date_potted": "2024-03-29",
+        "main_img_url": "https://placehold.co/200x200"
+      }
+    ]
+  },
+  "plantNotes": {
+    "loading": false,
+    "error": "",
+    "plantNotesData": [
+      {
+        "id": "89c3683d-cdde-4dc6-a376-0fa381f96627",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "plant_id": "a0e23c2f-c74a-4703-a1a9-d26343ad1679",
+        "created_at": "2024-03-30T00:04:21.894836+00:00",
+        "date": "03/29/2024",
+        "type": "asdf",
+        "description": "test 2"
+      },
+      {
+        "id": "35c5d2e7-5f12-4fe8-a0f0-611daaedca30",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "plant_id": "a0e23c2f-c74a-4703-a1a9-d26343ad1679",
+        "created_at": "2024-03-30T00:28:09.309327+00:00",
+        "date": "03/29/2024",
+        "type": "Water",
+        "description": "teest watter"
+      },
+      {
+        "id": "237fba31-156e-4a06-9244-5b858c1789c8",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "plant_id": "a0e23c2f-c74a-4703-a1a9-d26343ad1679",
+        "created_at": "2024-03-30T00:28:25.887541+00:00",
+        "date": "03/29/2024",
+        "type": "Fertilize ",
+        "description": "3g 7-4-2 test"
+      },
+      {
+        "id": "9376e42c-f5d7-423f-875b-382c8e6d14c8",
+        "user_id": "d367cf3d-0d0a-4f52-a94e-e343a25b36bd",
+        "plant_id": "a0e23c2f-c74a-4703-a1a9-d26343ad1679",
+        "created_at": "2024-03-30T01:52:26.923659+00:00",
+        "date": "03/25/2024",
+        "type": "Water",
+        "description": "testing stuff"
+      }
+    ]
+  }
+}

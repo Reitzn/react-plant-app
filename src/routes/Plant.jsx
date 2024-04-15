@@ -60,13 +60,13 @@ export default function PlantPage() {
                 <b>Scientific Name:</b>
               </Grid>
               <Grid item xs={6} md={3}>
-               {plant?.scientific_name}
+                {plant?.scientific_name}
               </Grid>
               <Grid item xs={6} md={3}>
                 <b>Potted On:</b>
               </Grid>
               <Grid item xs={6} md={3}>
-               {plant?.date_potted}
+                {plant?.date_potted}
               </Grid>
               <Grid item xs={6} md={3}>
                 <b>Origin Seed:</b>
@@ -80,7 +80,7 @@ export default function PlantPage() {
         <Grid item xs={12}>
           <PageItem>
             <h2>Notes</h2>
-            <PlantNotes />
+            <PlantNotes plantId={plantId} />
           </PageItem>
         </Grid>
         <Grid item xs={12}>

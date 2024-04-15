@@ -75,6 +75,8 @@ export default function Login() {
       <Button
         sx={{ my: 2, color: "white", display: "block" }}
         onClick={handleOpen}
+        data-testid="login-button"
+        id="login-button"
       >
         Login
       </Button>
@@ -112,6 +114,7 @@ export default function Login() {
               variant="contained"
               loading={loading}
               type="submit"
+              id="modal-login-button"
               fullWidth
             >
               Login

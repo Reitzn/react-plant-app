@@ -19,14 +19,18 @@ const Root = styled("div")(({ theme }) => ({
   },
 }));
 
-export default function DividerText() {
+export default function DividerText(props) {
+  const { plantId } = props;
   const plantNotes = useSelector((state) => state.plantNotes);
+  const activePlantNotes = plantNotes?.plantNotesData?.filter(
+    (plantNote) => plantNote.plant_id === plantId
+  );
 
   // To-Do: Sort by date
 
   return (
     <Root>
-      {plantNotes?.plantNotesData?.map((plantNote) => (
+      {activePlantNotes?.map((plantNote) => (
         <>
           <Divider />
           <Box sx={{ p: 2 }}>

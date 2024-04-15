@@ -3,7 +3,9 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
-
+import { Container, Grid } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import PlantCatalogTable from "../components/plantCatalog/PlantCatalogTable";
 import { useSelector, useDispatch } from "react-redux";
 
 import { updateUserAction } from "../features/user/userSlice";
@@ -33,38 +35,69 @@ export default function Account() {
       <Typography variant="h3" component="h1">
         Welcome
       </Typography>
-      <Box component="form" onSubmit={handleUpdateUser} noValidate>
-        <TextField
-          label="Email"
-          defaultValue={userSession?.user?.email}
-          disabled
-          variant="outlined"
-        />
-        <TextField
-          label="User Name"
-          name="username"
-          defaultValue={user?.userData?.username}
-          variant="outlined"
-        />
-        <TextField
-          label="Name"
-          name="full_name"
-          defaultValue={user?.userData?.full_name}
-          variant="outlined"
-        />
+      <Grid container spacing={4} mt={2}>
+        <Grid item xs={12} md={6}>
+          <img alt="" src="https://placehold.co/200x200" />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box component="form" onSubmit={handleUpdateUser} noValidate>
+            <Stack spacing={2}>
+              <TextField
+                label="Email"
+                defaultValue={userSession?.user?.email}
+                disabled
+                variant="outlined"
+              />
+              <TextField
+                label="User Name"
+                name="username"
+                defaultValue={user?.userData?.username}
+                variant="outlined"
+              />
+              <TextField
+                label="Name"
+                name="full_name"
+                defaultValue={user?.userData?.full_name}
+                variant="outlined"
+              />
 
-        <LoadingButton
-          variant="contained"
-          loading={user?.loading}
-          type="submit"
-        >
-          Update
-        </LoadingButton>
-      </Box>
+              <LoadingButton
+                variant="contained"
+                loading={user?.loading}
+                type="submit"
+              >
+                Update
+              </LoadingButton>
+            </Stack>
+          </Box>
+        </Grid>
+      </Grid>
+
       {user?.userData?.admin && (
-        <>
-          <AddPlantCatalog />
-        </>
+        <Box mt={3}>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Admin Panel
+          </Typography>
+          <Box
+            mb={3}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Typography variant="h5" component="h3" gutterBottom>
+              Plant Catalog
+            </Typography>
+          </Box>
+          <Box
+            mb={3}
+            display="flex"
+            justifyContent="flex-end"
+            alignItems="flex-end"
+          >
+            <AddPlantCatalog />
+          </Box>
+          <PlantCatalogTable />
+        </Box>
       )}
     </div>
   );
