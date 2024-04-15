@@ -1,6 +1,15 @@
 # Welcome to React Plant App
 
-This project was created to build an amazing seed-to-harvest application for the users, by the users. 
+This project was created to build a seed-to-harvest tracking application. 
+
+## Tech Stack
+
+- React 
+- Redux Toolkit
+- MUI
+- React Router 
+- Supabase
+
 
 ## NFC Tags 
 
@@ -8,24 +17,25 @@ It is easy to create a digital plant tags! And very cheep, tracking  your plants
 
 ### Get some NFC Tags 
 
-Check out Amazon, there are some good NFC Tags that are in PFC that are wartter proof and have 3M tape on them, they are good. 
+Check out Amazon, there are some good NFC Tags that are in PFC that are water proof and have 3M tape on them, they are good. 
 
 
 ### Program Them 
 
-NFC Editor can wrie URL's to NFC tags, take your plants URL and prgram it to a tag.
+NFC Editor can write URL's to NFC tags, take your plants URL and program it to a tag.
 
 
-
-
-
-# Getting Started with Create React App
+# Getting Started with helping React Plant App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Building features for this application is like any other CRA website. 
+
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run*:
+
+* : As of right now you need the backends .env file. I am currently working on setting up localhost Supabase tables so keys are not needed for development or testing.    
 
 ### `npm start`
 
@@ -37,55 +47,8 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
-### `npm run build`
+### `npm test:e2e`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Launches the cucumber and selenium end to end tests.
