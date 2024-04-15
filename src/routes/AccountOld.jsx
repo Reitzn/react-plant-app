@@ -79,7 +79,12 @@ export default function Account() {
         />
         <div>
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" value={user?.userData?.email} disabled />
+          <input
+            id="email"
+            type="text"
+            value={user?.userData?.email}
+            disabled
+          />
         </div>
         <div>
           <label htmlFor="username">Name</label>

@@ -17,7 +17,7 @@ export const getPlantsAction = createAsyncThunk(
       .eq("user_id", userId);
 
     return data;
-  }
+  },
 );
 
 // Add Plant
@@ -31,7 +31,7 @@ export const addPlantAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 // Delete Plant
@@ -41,7 +41,7 @@ export const deletePlantAction = createAsyncThunk(
     const { error } = await supabase.from("plants").delete().eq("id", plantId);
 
     return plantId;
-  }
+  },
 );
 
 // Update Plant
@@ -56,14 +56,13 @@ export const updatePlantAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 export const plantsSlice = createSlice({
   name: "plants",
   initialState: initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers(builder) {
     // Get plants
     builder.addCase(getPlantsAction.pending, (state) => {
@@ -98,7 +97,7 @@ export const plantsSlice = createSlice({
     builder.addCase(deletePlantAction.fulfilled, (state, action) => {
       state.loading = false;
       state.plantsData = state.plantsData.filter(
-        (plant) => plant.id !== action.payload
+        (plant) => plant.id !== action.payload,
       );
     });
     builder.addCase(deletePlantAction.rejected, (state, action) => {
@@ -113,7 +112,7 @@ export const plantsSlice = createSlice({
     builder.addCase(updatePlantAction.fulfilled, (state, action) => {
       state.loading = false;
       state.plantsData = state.plantsData.map((plant) =>
-        plant.id === action.payload.id ? action.payload : plant
+        plant.id === action.payload.id ? action.payload : plant,
       );
     });
     builder.addCase(updatePlantAction.rejected, (state, action) => {

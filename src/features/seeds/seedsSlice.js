@@ -19,7 +19,7 @@ export const getSeedsAction = createAsyncThunk(
       .eq("user_id", userId);
 
     return data;
-  }
+  },
 );
 
 // Add Seed
@@ -33,7 +33,7 @@ export const addSeedAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 // Delete Seed
@@ -43,7 +43,7 @@ export const deleteSeedAction = createAsyncThunk(
     const { error } = await supabase.from("seeds").delete().eq("id", seedId);
 
     return seedId;
-  }
+  },
 );
 
 // Update Seed
@@ -58,7 +58,7 @@ export const updateSeedAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 // Pot Up Seed
@@ -79,13 +79,13 @@ export const potUpSeedAction = createAsyncThunk(
       user_id: data.user_id,
       common_name: data.common_name,
       scientific_name: data.scientific_name,
-      date_potted: data.date_potted
-    }
+      date_potted: data.date_potted,
+    };
 
-    dispatch(addPlantAction(newPlant))
+    dispatch(addPlantAction(newPlant));
 
     return data;
-  }
+  },
 );
 
 export const seedsSlice = createSlice({
@@ -126,7 +126,7 @@ export const seedsSlice = createSlice({
     builder.addCase(deleteSeedAction.fulfilled, (state, action) => {
       state.loading = false;
       state.seedsData = state.seedsData.filter(
-        (seed) => seed.id !== action.payload
+        (seed) => seed.id !== action.payload,
       );
     });
     builder.addCase(deleteSeedAction.rejected, (state, action) => {
@@ -141,7 +141,7 @@ export const seedsSlice = createSlice({
     builder.addCase(updateSeedAction.fulfilled, (state, action) => {
       state.loading = false;
       state.seedsData = state.seedsData.map((seed) =>
-        seed.id === action.payload.id ? action.payload : seed
+        seed.id === action.payload.id ? action.payload : seed,
       );
     });
     builder.addCase(updateSeedAction.rejected, (state, action) => {
@@ -156,7 +156,7 @@ export const seedsSlice = createSlice({
     builder.addCase(potUpSeedAction.fulfilled, (state, action) => {
       state.loading = false;
       state.seedsData = state.seedsData.filter(
-        (seed) => seed.id !== action.payload.id
+        (seed) => seed.id !== action.payload.id,
       );
     });
     builder.addCase(potUpSeedAction.rejected, (state, action) => {

@@ -1,11 +1,10 @@
 import React, { useContext, useMemo, useState } from "react";
 import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
-import { teal, grey } from '@mui/material/colors';
-
+import { teal, grey } from "@mui/material/colors";
 
 export const ColorModeContext = React.createContext({
   togglColorMode: () => {},
-  mode: "light"
+  mode: "light",
 });
 
 export const ColorModeContextProvider = ({ children }) => {
@@ -17,9 +16,9 @@ export const ColorModeContextProvider = ({ children }) => {
       togglColorMode: () => {
         setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
-      mode
+      mode,
     }),
-    [mode]
+    [mode],
   );
 
   const theme = useMemo(
@@ -27,7 +26,7 @@ export const ColorModeContextProvider = ({ children }) => {
       createTheme({
         palette: {
           mode,
-          ...(mode === 'light'
+          ...(mode === "light"
             ? {
                 // palette values for light mode
                 primary: teal,
@@ -46,13 +45,13 @@ export const ColorModeContextProvider = ({ children }) => {
                   paper: teal[900],
                 },
                 text: {
-                  primary: '#fff',
+                  primary: "#fff",
                   secondary: grey[500],
                 },
               }),
         },
       }),
-    [mode]
+    [mode],
   );
 
   return (

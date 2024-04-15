@@ -23,7 +23,7 @@ import { authRoutes } from "../../utils/const";
 
 function ResponsiveAppBar() {
   const userSession = useSelector((state) => state.userSession);
-  
+
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {

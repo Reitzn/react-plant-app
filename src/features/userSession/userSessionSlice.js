@@ -3,8 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "../../supabaseClient";
 
 import { useSelector, useDispatch } from "react-redux";
-import {getUserAction} from "../user/userSlice"
-
+import { getUserAction } from "../user/userSlice";
 
 const initialState = {};
 

@@ -17,7 +17,7 @@ export const getPlantNoteAction = createAsyncThunk(
       .eq("user_id", userId);
 
     return data;
-  }
+  },
 );
 
 // Add Plant Note
@@ -31,7 +31,7 @@ export const addPlantNoteAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 // Delete Plant Note
@@ -44,7 +44,7 @@ export const deletePlantNoteAction = createAsyncThunk(
       .eq("id", plantNoteId);
 
     return plantNoteId;
-  }
+  },
 );
 
 // Update Plant Note
@@ -59,7 +59,7 @@ export const updatePlantNoteAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 export const plantNotesSlice = createSlice({
@@ -100,7 +100,7 @@ export const plantNotesSlice = createSlice({
     builder.addCase(deletePlantNoteAction.fulfilled, (state, action) => {
       state.loading = false;
       state.plantNotesData = state.plantNotesData.filter(
-        (plantNote) => plantNote.id !== action.payload
+        (plantNote) => plantNote.id !== action.payload,
       );
     });
     builder.addCase(deletePlantNoteAction.rejected, (state, action) => {
@@ -115,7 +115,7 @@ export const plantNotesSlice = createSlice({
     builder.addCase(updatePlantNoteAction.fulfilled, (state, action) => {
       state.loading = false;
       state.plantNotesData = state.plantNotesData.map((plantNote) =>
-        plantNote.id === action.payload.id ? action.payload : plantNote
+        plantNote.id === action.payload.id ? action.payload : plantNote,
       );
     });
     builder.addCase(updatePlantNoteAction.rejected, (state, action) => {

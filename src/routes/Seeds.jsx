@@ -8,7 +8,12 @@ export default function Seeds() {
   return (
     <div className="page">
       <h1>Seeds</h1>
-      <Box mb={3} display="flex" justifyContent="flex-end" alignItems="flex-end">
+      <Box
+        mb={3}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
         <AddSeed />
       </Box>
       <SeedsTable />

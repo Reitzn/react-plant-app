@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -22,17 +22,16 @@ import {
 } from "../../features/seeds/seedsSlice";
 
 export default function UsersTable() {
+  const [users, setUsers] = useState();
 
-    const [users, setUsers] = useState()
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await supabase.from("profiles").select("*");
+      setUsers(data?.data);
+    };
 
-    useEffect(() => {
-        const getUsers = async () => {
-            const data = await supabase.from("profiles").select("*")
-            setUsers(data?.data);
-          };
-        
-          getUsers();
-    },[])
+    getUsers();
+  }, []);
 
   return (
     <TableContainer component={Paper}>

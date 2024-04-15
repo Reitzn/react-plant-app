@@ -44,7 +44,6 @@ export default function SignUp() {
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword");
 
-
     // to-do: Get this to go way after typing?!?! Finish login for error handling
     if (!email) {
       setEmailError(true);
@@ -81,7 +80,7 @@ export default function SignUp() {
     });
 
     setLoading(false);
-    handleClose()
+    handleClose();
 
     if (error) {
       alert(error.error_description || error.message);

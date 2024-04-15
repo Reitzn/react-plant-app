@@ -86,7 +86,7 @@ function App() {
         dispatch(getUserAction(session?.user?.id));
         dispatch(getSeedsAction(session?.user?.id));
         dispatch(getPlantsAction(session?.user?.id));
-        dispatch(getPlantNoteAction(session?.user?.id))
+        dispatch(getPlantNoteAction(session?.user?.id));
       } else {
         dispatch(setUserSession({}));
         // To-Do: Need to reset other context to empty

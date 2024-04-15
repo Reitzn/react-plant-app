@@ -30,7 +30,7 @@ export default function EditPlantNote(props) {
 
   const { plantNoteId } = props;
   const plantNote = plantNotes?.plantNotesData?.find(
-    (plantNote) => plantNote?.id === plantNoteId
+    (plantNote) => plantNote?.id === plantNoteId,
   );
 
   const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ export default function EditPlantNote(props) {
     const data = new FormData(event.currentTarget);
 
     const newPlantNote = {
-      id: plantNote?.id,  
+      id: plantNote?.id,
       user_id: userSession?.user?.id,
       plant_id: plantId,
       date: data.get("date"),

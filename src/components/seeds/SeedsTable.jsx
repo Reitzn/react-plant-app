@@ -24,7 +24,7 @@ export default function SeedsTable() {
   const seeds = useSelector((state) => state.seeds);
   const dispatch = useDispatch();
 
-  const activeSeeds = seeds?.seedsData.filter((seed) => seed.active === true)
+  const activeSeeds = seeds?.seedsData.filter((seed) => seed.active === true);
 
   return (
     <TableContainer component={Paper}>
@@ -59,7 +59,7 @@ export default function SeedsTable() {
                     onClick={() => {
                       const today = dayjs().toString();
                       dispatch(
-                        updateSeedAction({ ...row, date_germinated: today })
+                        updateSeedAction({ ...row, date_germinated: today }),
                       );
                     }}
                   >
@@ -70,7 +70,15 @@ export default function SeedsTable() {
               <TableCell align="right">
                 <Button
                   variant="text"
-                  onClick={() => dispatch(potUpSeedAction({...row, date_potted: dayjs().toString(), active: false}))}
+                  onClick={() =>
+                    dispatch(
+                      potUpSeedAction({
+                        ...row,
+                        date_potted: dayjs().toString(),
+                        active: false,
+                      }),
+                    )
+                  }
                 >
                   Pot Up
                 </Button>

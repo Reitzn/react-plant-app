@@ -46,7 +46,9 @@ export default function PlantsTable() {
               <TableCell align="right">{row.scientific_name}</TableCell>
               <TableCell align="right">{row.date_potted}</TableCell>
               <TableCell align="right">
-                <Button variant="text" onClick={() => navigate(row.id)} >View</Button>
+                <Button variant="text" onClick={() => navigate(row.id)}>
+                  View
+                </Button>
               </TableCell>
               <TableCell align="right">
                 <IconButton

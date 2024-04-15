@@ -17,7 +17,7 @@ export const getUserAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 export const updateUserAction = createAsyncThunk(
@@ -30,7 +30,7 @@ export const updateUserAction = createAsyncThunk(
       .single();
 
     return data;
-  }
+  },
 );
 
 export const userSlice = createSlice({
@@ -38,7 +38,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    
     // Get User
     builder.addCase(getUserAction.pending, (state) => {
       state.loading = true;
@@ -54,7 +53,7 @@ export const userSlice = createSlice({
       state.error = action.error.message || "";
     });
 
-    // Update User 
+    // Update User
     builder.addCase(updateUserAction.pending, (state) => {
       state.loading = true;
     });

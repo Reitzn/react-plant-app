@@ -23,7 +23,7 @@ export default function DividerText(props) {
   const { plantId } = props;
   const plantNotes = useSelector((state) => state.plantNotes);
   const activePlantNotes = plantNotes?.plantNotesData?.filter(
-    (plantNote) => plantNote.plant_id === plantId
+    (plantNote) => plantNote.plant_id === plantId,
   );
 
   // To-Do: Sort by date

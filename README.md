@@ -1,41 +1,38 @@
 # Welcome to React Plant App
 
-This project was created to build a seed-to-harvest tracking application. 
+This project was created to build a seed-to-harvest tracking application.
 
 ## Tech Stack
 
-- React 
+- React
 - Redux Toolkit
 - MUI
-- React Router 
+- React Router
 - Supabase
 
+## NFC Tags
 
-## NFC Tags 
+It is easy to create a digital plant tags! And very cheep, tracking your plants can become very simple.
 
-It is easy to create a digital plant tags! And very cheep, tracking  your plants can become very simple. 
+### Get some NFC Tags
 
-### Get some NFC Tags 
+Check out Amazon, there are some good NFC Tags that are in PFC that are water proof and have 3M tape on them, they are good.
 
-Check out Amazon, there are some good NFC Tags that are in PFC that are water proof and have 3M tape on them, they are good. 
-
-
-### Program Them 
+### Program Them
 
 NFC Editor can write URL's to NFC tags, take your plants URL and program it to a tag.
-
 
 # Getting Started with helping React Plant App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Building features for this application is like any other CRA website. 
+Building features for this application is like any other CRA website.
 
 ## Available Scripts
 
-In the project directory, you can run*:
+In the project directory, you can run\*:
 
-* : As of right now you need the backends .env file. I am currently working on setting up localhost Supabase tables so keys are not needed for development or testing.    
+- : As of right now you need the backends .env file. I am currently working on setting up localhost Supabase tables so keys are not needed for development or testing.
 
 ### `npm start`
 
