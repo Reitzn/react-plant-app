@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
 
+import ImageSection from "../components/plant/ImageSection";
 import PlantNotes from "../components/plant/PlantNotes";
 
 // Mostly defult code from MUI for grid examples.
@@ -18,8 +19,6 @@ export const PageItem = styled(Paper)(({ theme }) => ({
 }));
 
 // import { PageItem } from "../componets/shared/PageItem";
-
-// import ImageSection from "../componets/plant/ImageSection";
 
 export default function PlantPage() {
   const plants = useSelector((state) => state.plants);
@@ -86,7 +85,7 @@ export default function PlantPage() {
         <Grid item xs={12}>
           <PageItem>
             <h2>Images</h2>
-            {/* <ImageSection plant={plant} /> */}
+            <ImageSection plant={plant} />
           </PageItem>
         </Grid>
       </Grid>
