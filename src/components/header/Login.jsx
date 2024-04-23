@@ -45,12 +45,14 @@ export default function Login() {
       setEmailErrorText("Email is required");
     } else {
       setEmailError(false);
+      setEmailErrorText("");
     }
     if (!password) {
       setPasswordError(true);
       setPasswordErrorText("Password is required");
     } else {
       setPasswordError(false);
+      setPasswordErrorText("");
     }
     if (!email || !password) {
       return;
@@ -116,6 +118,7 @@ export default function Login() {
               type="submit"
               id="modal-login-button"
               fullWidth
+              data-testid="modal-login-button"
             >
               Login
             </LoadingButton>

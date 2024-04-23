@@ -1,24 +1,11 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import { useSelector, useDispatch } from "react-redux";
+import { PageItem } from "../components/shared/Items";
+import { useSelector } from "react-redux";
 
 import ImageSection from "../components/plant/ImageSection";
 import PlantNotes from "../components/plant/PlantNotes";
-
-// Mostly defult code from MUI for grid examples.
-export const PageItem = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  height: "100%",
-}));
-
-// import { PageItem } from "../componets/shared/PageItem";
 
 export default function PlantPage() {
   const plants = useSelector((state) => state.plants);

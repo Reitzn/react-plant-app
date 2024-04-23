@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,13 +7,10 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import ForestIcon from "@mui/icons-material/Forest";
-
 import { useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
 
 import MobileMenu from "./MobileMenu";
-
 import Login from "./Login";
 import SignUp from "./SignUp";
 import UserDropdown from "./UserDropdown";
@@ -23,17 +20,6 @@ import { authRoutes } from "../../utils/const";
 
 function ResponsiveAppBar() {
   const userSession = useSelector((state) => state.userSession);
-
-  const [anchorElNav, setAnchorElNav] = useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const navigate = useNavigate();
 
   return (
@@ -85,7 +71,6 @@ function ResponsiveAppBar() {
                   key={route.to}
                   sx={{ my: 2, color: "white", display: "block" }}
                   onClick={() => {
-                    handleCloseNavMenu();
                     navigate(route.to);
                   }}
                 >

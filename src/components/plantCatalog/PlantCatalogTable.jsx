@@ -6,23 +6,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
-// import MoreVertIcon from "@mui/icons-material/MoreVert";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 
-import dayjs from "dayjs";
-
-import { useSelector, useDispatch } from "react-redux";
-import { deletePlantAction } from "../../features/plants/plantsSlice";
-
 export default function PlantCatalogTable() {
-  // const plants = useSelector((state) => state.pl);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [plants, setPlants] = useState();
 
   useEffect(() => {
@@ -34,17 +20,13 @@ export default function PlantCatalogTable() {
     getPlants();
   }, []);
 
-  console.log(plants);
-
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="plant catalog table">
+      <Table sx={{ minWidth: 350 }} aria-label="plant catalog table">
         <TableHead>
           <TableRow>
             <TableCell>Plant</TableCell>
-            <TableCell align="right">Scientific Name</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
+            <TableCell>Scientific Name</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,7 +38,7 @@ export default function PlantCatalogTable() {
               <TableCell component="th" scope="row">
                 {row.common_name}
               </TableCell>
-              <TableCell align="right">{row.scientific_name}</TableCell>
+              <TableCell>{row.scientific_name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

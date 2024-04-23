@@ -16,5 +16,3 @@ Feature: Authenticated User
     When A user enters new seed information
     Then The new seed should be added
 
-  Scenario: Modify a seed
-    When A user 

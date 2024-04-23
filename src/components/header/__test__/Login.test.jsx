@@ -10,8 +10,11 @@ test("Add Seed Modal", async () => {
     preloadedState: testData,
   });
 
-  // To-Do: Why is this still throwing act warning
-
   userEvent.click(screen.getByTestId("login-button"));
   expect(await screen.findByRole("heading")).toHaveTextContent("Login");
+
+  userEvent.click(screen.getByTestId("modal-login-button"));
+
+  expect(await screen.findByText("Email is required")).toBeInTheDocument();
+  expect(await screen.findByText("Password is required")).toBeInTheDocument();
 });

@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateUserAction } from "../features/user/userSlice";
 
 import AddPlantCatalog from "../components/plantCatalog/AddPlantCatalog";
+import Avatar from "../components/account/Avatar";
 
 export default function Account() {
   const user = useSelector((state) => state.user);
@@ -36,8 +37,8 @@ export default function Account() {
         Welcome
       </Typography>
       <Grid container spacing={4} mt={2}>
-        <Grid item xs={12} md={6}>
-          <img alt="" src="https://placehold.co/200x200" />
+        <Grid container xs={12} md={6} justifyContent="center">
+          <Avatar />
         </Grid>
         <Grid item xs={12} md={6}>
           <Box component="form" onSubmit={handleUpdateUser} noValidate>

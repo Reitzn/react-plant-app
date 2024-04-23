@@ -44,18 +44,20 @@ export default function SignUp() {
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword");
 
-    // to-do: Get this to go way after typing?!?! Finish login for error handling
+    // To-Do: Add React Hook Form
     if (!email) {
       setEmailError(true);
       setEmailErrorText("Email is required");
     } else {
       setEmailError(false);
+      setEmailErrorText("");
     }
     if (!password) {
       setPasswordError(true);
       setPasswordErrorText("Password is required");
     } else {
       setPasswordError(false);
+      setPasswordErrorText("");
     }
     if (!confirmPassword) {
       setConfirmPasswordError(true);
@@ -65,10 +67,15 @@ export default function SignUp() {
       setConfirmPasswordErrorText("Passwords must match");
     } else {
       setConfirmPasswordError(false);
+      setConfirmPasswordErrorText("");
     }
 
-    // useState errors are not false yet, so this is not working.
-    if (emailError || passwordError || confirmPasswordError) {
+    if (
+      !email ||
+      !password ||
+      !confirmPassword ||
+      confirmPassword !== password
+    ) {
       return;
     }
 

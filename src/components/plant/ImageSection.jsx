@@ -4,10 +4,10 @@ import IconButton from "@mui/material/IconButton";
 import { Box } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { useParams } from "react-router-dom";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { supabase } from "../../supabaseClient";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ImageSection(props) {
   const { plant } = props;
@@ -19,6 +19,8 @@ export default function ImageSection(props) {
     "/";
   const [images, setImages] = useState([]);
 
+  // To-Do: This logic should be moved to redux. I probably want to
+  // keep a list of images in the plantDB and ref from that?
   useEffect(() => {
     if (plant?.user_id) {
       getImages();
@@ -36,7 +38,7 @@ export default function ImageSection(props) {
     const newImage = event.target.files[0];
     const { data, error } = await supabase.storage
       .from("user_photos")
-      .upload(plant.user_id + "/" + plant.id + "/" + newImage.name, newImage);
+      .upload(plant.user_id + "/" + plant.id + "/" + uuidv4(), newImage);
 
     getImages();
   };
@@ -83,7 +85,6 @@ export default function ImageSection(props) {
               actionIcon={
                 <IconButton
                   sx={{ color: "white" }}
-                  aria-label={`star ${item.name}`}
                   onClick={() => handleDeleteImage(item.name)}
                 >
                   <DeleteIcon />

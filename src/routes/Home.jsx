@@ -1,21 +1,10 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Container, Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
+import { Grid } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
+import { PageItem } from "../components/shared/Items";
 import PlantImg from "../img/plant_homepage.png";
-
-export const PageItem = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  height: "100%",
-}));
 
 export default function Home() {
   return (
