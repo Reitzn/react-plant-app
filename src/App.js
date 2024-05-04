@@ -14,6 +14,8 @@ import Seeds from "./routes/Seeds";
 import Plants from "./routes/Plants";
 import Plant from "./routes/Plant";
 import Users from "./routes/Users";
+import PlantCatalog from "./routes/PlantCatalog";
+import CatalogPlant from "./routes/CatalogPlant";
 
 import Header from "./components/header/Header";
 
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <Users />,
+      },
+      {
+        path: "plantCatalog",
+        element: <PlantCatalog />,
+      },
+      {
+        path: "plantCatalog/:catalogPlantId",
+        element: <CatalogPlant />,
       },
     ],
   },

@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { supabase } from "../../supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -22,6 +23,8 @@ const style = {
 };
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -68,8 +71,9 @@ export default function Login() {
     if (error) {
       alert(error.error_description || error.message);
     }
-
     setLoading(false);
+    handleClose();
+    navigate("/account");
   };
 
   return (
